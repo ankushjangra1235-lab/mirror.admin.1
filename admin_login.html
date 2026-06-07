@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Access — Magic Vanity</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@300;400;500&family=Cormorant+Garamond:wght@300;400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: radial-gradient(circle at center, #14120e 0%, #080706 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .card {
+      background: #0f0e0d;
+      border: 0.5px solid rgba(223, 186, 115, 0.25);
+      border-radius: 16px;
+      padding: 55px 45px;
+      width: 380px;
+      text-align: center;
+      box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(223, 186, 115, 0.05);
+    }
+
+    .logo {
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.45em;
+      color: rgba(223, 186, 115, 0.7);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: rgba(223, 186, 115, 0.3);
+      letter-spacing: 0.12em;
+      margin-bottom: 40px;
+      text-transform: uppercase;
+    }
+
+    input[type="password"] {
+      width: 100%;
+      background: #050505;
+      border: 0.5px solid rgba(223, 186, 115, 0.2);
+      border-radius: 8px;
+      padding: 14px 18px;
+      color: rgba(255, 240, 200, 0.9);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      outline: none;
+      margin-bottom: 18px;
+      transition: all 0.25s ease;
+    }
+
+    input[type="password"]:focus {
+      border-color: rgba(223, 186, 115, 0.6);
+      box-shadow: 0 0 10px rgba(223, 186, 115, 0.1);
+    }
+
+    button {
+      width: 100%;
+      background: rgba(223, 186, 115, 0.06);
+      border: 0.5px solid rgba(223, 186, 115, 0.35);
+      border-radius: 8px;
+      padding: 14px;
+      color: rgba(255, 240, 200, 0.85);
+      font-family: 'Cinzel', serif;
+      font-size: 10px;
+      letter-spacing: 0.32em;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      text-transform: uppercase;
+    }
+
+    button:hover {
+      background: rgba(223, 186, 115, 0.15);
+      border-color: rgba(223, 186, 115, 0.6);
+      box-shadow: 0 0 15px rgba(223, 186, 115, 0.15);
+    }
+
+    .error {
+      color: rgba(230, 90, 90, 0.85);
+      font-size: 14px;
+      margin-top: 18px;
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <p class="logo">Vanity Admin</p>
+    <p class="subtitle">Access Portal</p>
+    <form method="POST" action="/login">
+      <input type="password" name="password" placeholder="Enter security password" autofocus />
+      <button type="submit">Unlock</button>
+    </form>
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+  </div>
+</body>
+</html>
