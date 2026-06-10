@@ -22,17 +22,18 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-with app.app_context():
-    db.create_all()
 
 # ── Database model (Same Shared Table) ────────────────────────────
 class CapturedImage(db.Model):
+    
     __tablename__ = 'captured_images'
     id          = db.Column(db.Integer, primary_key=True)
     image_data  = db.Column(db.Text, nullable=False)  # Base64 string
     captured_at = db.Column(db.DateTime, default=datetime.utcnow)
     compliment  = db.Column(db.String(200), nullable=True)
 
+with app.app_context():
+    db.create_all()
 # ── Admin Auth ───────────────────────────────────────────────────
 ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', '@Ankush121')
 
