@@ -22,6 +22,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+with app.app_context():
+    db.create_all()
+
 # ── Database model (Same Shared Table) ────────────────────────────
 class CapturedImage(db.Model):
     __tablename__ = 'captured_images'
